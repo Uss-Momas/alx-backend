@@ -36,6 +36,11 @@ class Server:
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         assert type(page) is int and type(page_size) is int
         assert page > 0 and page_size > 0
+
         s_index, e_index = index_range(page=page, page_size=page_size)
+
         data_set = self.dataset()
+
+        if e_index > len(data_set) - 1:
+            return []
         return data_set[s_index:e_index]
