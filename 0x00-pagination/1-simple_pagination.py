@@ -4,16 +4,6 @@ import csv
 from typing import List, Tuple
 
 
-def index_range(page: int, page_size: int) -> Tuple[int, int]:
-    """return a tuple of size two containing a start index and an end index
-    corresponding to the range of indexes to return in a list for those
-    particular pagination parameters.
-    """
-    end_index = page_size * page
-    start_index = end_index - page_size
-    return (start_index, end_index)
-
-
 class Server:
     """Server class to paginate a database of popular baby names.
     """
@@ -33,14 +23,21 @@ class Server:
 
         return self.__dataset
 
+    @staticmethod
+    def index_range(page: int, page_size: int) -> Tuple[int, int]:
+        """return a tuple of size two containing a start index and an end index
+        corresponding to the range of indexes to return in a list for those
+        particular pagination parameters.
+        """
+        end_index = page_size * page
+        start_index = end_index - page_size
+        return (start_index, end_index)
+
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+        """Get the list of limited elements"""
         assert type(page) is int and type(page_size) is int
         assert page > 0 and page_size > 0
 
-        s_index, e_index = index_range(page=page, page_size=page_size)
-
+        s_index, e_index = self.index_range(page, page_size)
         data_set = self.dataset()
-
-        if e_index > len(data_set) - 1:
-            return []
         return data_set[s_index:e_index]
