@@ -20,15 +20,10 @@ class LIFOCache(BaseCaching):
             - item: item being associated with the key
         """
         if key and item:
-            # if len(self.cache_data) >= BaseCaching.MAX_ITEMS:
-            #     del self.cache_data[self.stack[-1]]
-            #     discarded_key = self.stack.pop()
-            #     print(f'DISCARD: {discarded_key}')
-
-            # self.cache_data[key] = item
-            # self.stack.append(key)
             self.cache_data[key] = item
             if len(self.cache_data) > BaseCaching.MAX_ITEMS:
+                # after adding the new item, the last added
+                # element is in the second last position
                 last_key = list(self.cache_data.keys())[-2]
                 print(f"DISCARD: {last_key}")
                 del self.cache_data[last_key]
