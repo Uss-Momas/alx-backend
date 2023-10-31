@@ -27,3 +27,35 @@
 
 ### Flask Babel documenation
 1. [Documentation](https://python-babel.github.io/flask-babel/)
+
+#### Babel parametrize templates
+1. create Babel config file **babel.cfg** containg
+```
+[python: **.py]
+[jinja2: **/templates/**.html]
+extensions=jinja2.ext.autoescape,jinja2.ext.with_
+```
+
+2. Initialize translations with:
+```
+$ pybabel extract -F babel.cfg -o messages.pot .
+```
+
+And 2 dictionaires
+
+```
+$ pybabel init -i messages.pot -d translations -l en
+$ pybabel init -i messages.pot -d translations -l fr
+```
+
+3. Edit the files in **translations/[en|fr]/LC_MESSAGES/messages.po** to provide correct key,value
+Use the following example:
+| msgid | English | French |
+|:-----:|:-------:|:------:|
+|home_title| "Welcome to Holberton"	|"Bienvenue chez Holberton"|
+|home_header| "Welcome to Holberton" |"Bonjour monde!"|
+
+4. Compile the dictionaires
+```
+$ pybabel compile -d translations
+```
