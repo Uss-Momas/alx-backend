@@ -24,3 +24,6 @@
 
 ## Installing
 1. pip3 install flask_babel==2.0.0
+
+### Flask Babel documenation
+1. [Documentation](https://python-babel.github.io/flask-babel/)
