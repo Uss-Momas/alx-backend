@@ -6,7 +6,10 @@ app = Flask(__name__)
 
 
 @app.route("/", strict_slashes=False)
-def index():
+def index() -> str:
+    """first route defined
+    Return a render_template string of the html file
+    """
     return render_template("0-index.html")
 
 
