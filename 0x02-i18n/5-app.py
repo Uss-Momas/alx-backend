@@ -5,7 +5,7 @@ containing simple translation to france or english
 from flask import Flask, render_template, request
 from flask import g
 from flask_babel import Babel
-from typing import Union
+from typing import Union, Dict
 
 users = {
     1: {"name": "Balou", "locale": "fr", "timezone": "Europe/Paris"},
@@ -31,18 +31,15 @@ app.config.from_object(Config)
 babel = Babel(app)
 
 
-def get_user() -> Union[dict, None]:
+def get_user(user_id: Union[int, None]) -> Union[Dict[str, Union[str, None]],
+                                                 None]:
     """
     Get a user from users table
     return:
         - Dictionary containing the user information
         or None
     """
-    user_id = request.args.get("login_as")
-    if user_id:
-        user_id = int(user_id)
-        return users.get(user_id)
-    return None
+    return users.get(user_id)
 
 
 @app.before_request
@@ -54,7 +51,9 @@ def before_request() -> None:
 
     Return None
     """
-    user = get_user()
+    user_id = request.args.get("login_as")
+    user_id = int(user_id) if user_id else None
+    user = get_user(user_id)
     setattr(g, "user", user)
 
 
