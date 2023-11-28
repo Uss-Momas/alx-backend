@@ -110,6 +110,13 @@ OK
 ```
 
 * Kill the server with the process id of the redis-server (hint: use ps and grep)
+Find the PID
+
+```shell
+ps aux | grep redis
+```
+
+KILL
 ```shell
 kill [PID_OF_Redis_Server]
 ```
