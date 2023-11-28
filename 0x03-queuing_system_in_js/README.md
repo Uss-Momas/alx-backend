@@ -114,3 +114,8 @@ OK
 kill [PID_OF_Redis_Server]
 ```
 * Copy the dump.rdb from the redis-5.0.7 directory into the root of the Queuing project.
+
+in UBUNTU We have to copy the dump from a locatio to the redis-5 directory:
+```shell
+sudo cp /var/lib/redis/dump.rdb .
+```
