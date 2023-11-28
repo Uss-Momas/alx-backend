@@ -78,3 +78,39 @@
 
 ### and…
 Don’t forget to run $ npm install when you have the package.json
+
+## Install redis
+Download, extract, and compile the latest stable Redis version (higher than 5.0.7 - https://redis.io/download/):
+
+```shell
+wget http://download.redis.io/releases/redis-6.0.10.tar.gz
+tar xzf redis-6.0.10.tar.gz
+cd redis-6.0.10
+make
+```
+
+* Start Redis in the background with src/redis-server
+```shell
+src/redis-server &
+```
+* Make sure that the server is working with a ping src/redis-cli ping
+```shell
+src/redis-cli ping
+```
+response
+```shell
+PONG
+```
+* Using the Redis client again, set the value School for the key Holberton
+```shell
+127.0.0.1:[Port]> set Holberton School
+OK
+127.0.0.1:[Port]> get Holberton
+"School"
+```
+
+* Kill the server with the process id of the redis-server (hint: use ps and grep)
+```shell
+kill [PID_OF_Redis_Server]
+```
+* Copy the dump.rdb from the redis-5.0.7 directory into the root of the Queuing project.
