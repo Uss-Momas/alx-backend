@@ -113,12 +113,17 @@ OK
 Find the PID
 
 ```shell
-ps aux | grep redis
+ps aux | grep redis-server
 ```
 
 KILL
 ```shell
 kill [PID_OF_Redis_Server]
+```
+
+OR
+```shell
+sudo service redis-server stop
 ```
 * Copy the dump.rdb from the redis-5.0.7 directory into the root of the Queuing project.
 
